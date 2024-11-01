@@ -1,7 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
 import { Course, CourseUpdateData } from "../types/course.types";
-import logger from "../utils/logger";
 
 const coursesPath = path.join(__dirname, "..", "data", "courses.json");
 const modulesPath = path.join(__dirname, "..", "data", "modules.json");
@@ -10,7 +9,9 @@ const lessonsPath = path.join(__dirname, "..", "data", "lessons.json");
 export const readCourses = async (): Promise<Course[]> => {
   try {
     const data = await fs.readFile(coursesPath, "utf-8");
-
+    if (!data || data.trim() === "") {
+      return [];
+    }
     return JSON.parse(data);
   } catch (error) {
     throw error;
@@ -127,5 +128,5 @@ export const deleteCourse = async (id: number): Promise<void> => {
     await writeLessons(courses);
     return;
   }
-  throw new Error("No record  found to delete");
+  throw new Error("No record found to delete");
 };
