@@ -18,8 +18,10 @@ benchmarks/graphs
 # Node.js
 node_modules/
 
-# Node.js
+
 .vscode/
+
+dist/
 
 # Logs
 logs
@@ -44,3 +46,4 @@ logs
 
 # Environment variables
 .env*
+
