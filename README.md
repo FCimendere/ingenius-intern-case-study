@@ -12,7 +12,6 @@ This Course Management System is designed to facilitate the management of course
 - [Usage](#usage)
 - [API Documentation](#api-documentation)
 - [Scripts](#scripts)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Features
@@ -28,7 +27,7 @@ This Course Management System is designed to facilitate the management of course
 - **Node.js**: JavaScript runtime for building the API.
 - **TypeScript**: Strongly typed programming language that builds on JavaScript.
 - **Express**: Web framework for building APIs.
-- **Joi**: Validation library for JavaScript objects.
+- **Joi**: Validation library.
 - **Winston**: Logging library for Node.js.
 - **Swagger**: API documentation framework.
 - **Nodemon**: Tool for automatically restarting the application during development.
@@ -39,6 +38,7 @@ This Course Management System is designed to facilitate the management of course
 
    ```bash
    git clone https://github.com/yourusername/ingenius-intern-case-study.git
+
    cd ingenius-intern-case-study
    ```
 
@@ -70,6 +70,7 @@ To build and run the application in production mode, execute:
 
 ```bash
 npm run build
+
 npm start
 
 ```
@@ -88,10 +89,10 @@ The API is documented using Swagger. To access the documentation, start the serv
 
 ## Scripts
 
-**npm run build**: Compiles the TypeScript code to JavaScript.
-**npm run start**: Starts the application in production mode.
-**npm run dev**: Starts the application in development mode with live reload.
-**npm test**: Runs the test suite (add your tests as needed).
+- **npm run build**: Compiles the TypeScript code to JavaScript.
+- **npm run start**: Starts the application in production mode.
+- **npm run dev**: Starts the application in development mode with live reload.
+- **npm test**: Runs the test suite (add your tests as needed).
 
 ## License
 
