@@ -1,7 +1,25 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import * as service from "../services/course.service";
 import { courseUpdateSchema } from "../schemas/course.schema";
 import { CourseUpdateData, CourseParams } from "../types/course.types";
+import logger from "../utils/logger";
+
+// Middleware to log requests
+const requestLogger = (req: Request, res: Response, next: NextFunction) => {
+  logger.info(`${req.method} ${req.url}`);
+  next();
+};
+
+// Middleware to log errors
+const errorLogger = (
+  err: any,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  logger.error(`Error occurred: ${err.message}`, { stack: err.stack });
+  res.status(500).json({ message: "Internal Server Error" });
+};
 
 /**
  * @swagger
@@ -22,9 +40,9 @@ import { CourseUpdateData, CourseParams } from "../types/course.types";
 export const getAllCourses = async (req: Request, res: Response) => {
   try {
     const courses = await service.findAll();
-
     res.json(courses);
   } catch (error) {
+    logger.error(`Error fetching course`);
     res.status(500).json({ message: "Error fetching courses" });
   }
 };
@@ -57,10 +75,12 @@ export const getCourseById = async (req: Request, res: Response) => {
     const courseId: number = parseInt(req.params.id, 10);
     const course = await service.findCourseById(courseId);
     if (!course) {
+      logger.error(`Course with ID ${courseId} not found`);
       res.status(404).json({ message: "Course not found" });
     }
     res.status(200).json(course);
   } catch (error) {
+    logger.error(`Error fetching course with ID`);
     res.status(500).json({ message: "Error fetching course" });
   }
 };
@@ -133,8 +153,10 @@ export const createCourse = async (
   }
   try {
     const newCourse = await service.create(value);
+    logger.info(`New course created successfully!`);
     res.status(201).json(newCourse);
   } catch (err) {
+    logger.error(`Error creating course`);
     res.status(500).json({ message: "Error creating course" });
   }
 };
@@ -213,11 +235,13 @@ export const updateCourse = async (
     );
 
     if (!updatedCourse) {
+      logger.error(`Course not found`);
       res.status(404).json({ message: "Course not found" });
     }
 
     res.json(updatedCourse);
   } catch (error) {
+    logger.error(`Error updating course`);
     res.status(500).json({ message: "Error updating course" });
   }
 };
@@ -266,6 +290,7 @@ export const deleteCourse = async (req: Request, res: Response) => {
 
     res.status(204).send();
   } catch (error) {
+    logger.error(`No course for Deletion`);
     res.status(500).json(error);
   }
 };

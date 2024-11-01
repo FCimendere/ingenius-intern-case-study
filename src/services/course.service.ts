@@ -1,6 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 import { Course, CourseUpdateData } from "../types/course.types";
+import logger from "../utils/logger";
 
 const coursesPath = path.join(__dirname, "..", "data", "courses.json");
 const modulesPath = path.join(__dirname, "..", "data", "modules.json");
@@ -12,7 +13,6 @@ export const readCourses = async (): Promise<Course[]> => {
 
     return JSON.parse(data);
   } catch (error) {
-    // TODO: add log
     throw error;
   }
 };
