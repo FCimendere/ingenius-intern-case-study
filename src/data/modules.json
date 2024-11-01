@@ -1,0 +1,20 @@
+{
+  "modules": [
+    {
+      "moduleId": "1-1",
+      "title": "HTML Basics"
+    },
+    {
+      "moduleId": "1-2",
+      "title": "CSS Fundamentals"
+    },
+    {
+      "moduleId": "3-1",
+      "title": "Updated new creation"
+    },
+    {
+      "moduleId": "4-1",
+      "title": "Updated new creation"
+    }
+  ]
+}

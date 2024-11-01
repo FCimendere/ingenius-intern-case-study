@@ -1,5 +1,4 @@
 import express from "express";
-import swaggerUi from "swagger-ui-express";
 import { setupSwagger } from "./swagger";
 import courseRoute from "./routes/course.route";
 import { errorHandler } from "./middlewares/errorHandler";
@@ -16,10 +15,14 @@ app.use(express.json());
 
 app.use("/api/courses", courseRoute);
 app.use(errorHandler);
+
 setupSwagger(app);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  console.log(
+    `Swagger docs are available at http://localhost:${PORT}/api-docs`
+  );
 });
 
 export default app;

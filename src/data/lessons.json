@@ -1,0 +1,52 @@
+{
+  "lessons": [
+    {
+      "lessonId": "1-1-1",
+      "title": "Understanding HTML Structure",
+      "description": "Learn about HTML tags and document structure",
+      "topics": [
+        "HTML tags",
+        "Document structure",
+        "Semantic HTML"
+      ]
+    },
+    {
+      "lessonId": "1-1-2",
+      "title": "Working with Forms",
+      "description": "Create and style HTML forms",
+      "topics": [
+        "Form elements",
+        "Input types",
+        "Form validation"
+      ]
+    },
+    {
+      "lessonId": "1-2-1",
+      "title": "CSS Selectors and Properties",
+      "description": "Master CSS selectors and common properties",
+      "topics": [
+        "Selectors",
+        "Box model",
+        "Colors and typography"
+      ]
+    },
+    {
+      "lessonId": "3-1-1",
+      "title": "Introduction to HTML",
+      "description": "Learn HTML fundamentals",
+      "topics": [
+        "HTML structure",
+        "Tags"
+      ]
+    },
+    {
+      "lessonId": "4-1-1",
+      "title": "Introduction to HTML",
+      "description": "Learn HTML fundamentals",
+      "topics": [
+        "HTML structure",
+        "Tags"
+      ]
+    }
+  ]
+}

@@ -17,11 +17,12 @@ import { CourseUpdateData, CourseParams } from "../types/course.types";
  *             schema:
  *               type: array
  *               items:
+ *                 $ref: '#/components/schemas/Course'
  */
 export const getAllCourses = async (req: Request, res: Response) => {
   try {
     const courses = await service.findAll();
-    console.log(`all: ${courses}`);
+
     res.json(courses);
   } catch (error) {
     res.status(500).json({ message: "Error fetching courses" });
@@ -47,6 +48,7 @@ export const getAllCourses = async (req: Request, res: Response) => {
  *         content:
  *           application/json:
  *             schema:
+ *               $ref: '#/components/schemas/Course'
  *       404:
  *         description: Course not found
  */
@@ -73,6 +75,19 @@ export const getCourseById = async (req: Request, res: Response) => {
  *       required: true
  *       content:
  *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 example: "Course Title"
+ *               description:
+ *                 type: string
+ *                 example: "Course Description"
+ *               modules:
+ *                 type: array
+ *                 items:
+ *                   $ref: '#/components/schemas/Module'
  *     responses:
  *       201:
  *         description: Course created successfully
@@ -83,7 +98,9 @@ export const getCourseById = async (req: Request, res: Response) => {
  *               properties:
  *                 message:
  *                   type: string
- *                   example: "Validation error message"
+ *                   example: "Course created successfully"
+ *                 course:
+ *                   $ref: '#/components/schemas/Course'
  *       400:
  *         description: Invalid request data
  *         content:
@@ -139,11 +156,26 @@ export const createCourse = async (
  *       required: true
  *       content:
  *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 example: "Updated Course Title"
+ *               description:
+ *                 type: string
+ *                 example: "Updated course description"
+ *               modules:
+ *                 type: array
+ *                 items:
+ *                   $ref: '#/components/schemas/Module'
  *     responses:
  *       200:
  *         description: Course updated successfully
  *         content:
  *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Course'
  *       404:
  *         description: Course not found
  *         content:
@@ -165,6 +197,7 @@ export const createCourse = async (
  *                   type: string
  *                   example: "Error updating course"
  */
+
 export const updateCourse = async (
   req: Request<CourseParams, {}, Partial<CourseUpdateData>>,
   res: Response
